@@ -1,0 +1,14 @@
+{% extends 'badala/base.html' %}
+{% block title %} Details {% endblock %}
+{% block body %}
+    <img src="{{ consumption.consumption_logo}}">
+    <h1>{{consumption.consumer}}</h1>
+
+    {% for product in consumption.product_set.all%}
+    {{product.description}}
+    {{product.price}}
+    {% total += product.price%}
+    {%endfor%}
+
+<h1>{{total}}</h1>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'badala/base.html' %}
+{% block body %}
+
+    <ul>
+        {% for consumption in all_consumption %}
+        <li><a href="{% url 'badala:detail' consumption.id%}">{{ consumption.consumer }}</a></li>
+        <form action="{% url 'badala:consumption-delete' consumption.id%}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <input type="hidden" name="consumption_id" value="{{consumption.id}}"/>
+            <button type="submit" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+
+        </form>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

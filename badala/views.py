@@ -1,34 +1,20 @@
+from django.contrib.auth.models import User
 from django.views import generic
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
-from .models import Consumption
 from .forms import UserForm
 
 class IndexView(generic.ListView):
     template_name = 'badala/index.html'
-    context_object_name = 'all_consumption'
+    context_object_name = 'all_users'
 
     def get_queryset(self):
-        return Consumption.objects.all()
+        return User.objects.all()
 
 class DetailView(generic.DetailView):
-    model = Consumption
+    model = User
     template_name = 'badala/detail.html'
-
-class ConsumptionCreate(CreateView):
-    model = Consumption
-    fields = ['consumer', 'total']
-
-class ConsumptionUpdate(UpdateView):
-    model = Consumption
-    fields = ['consumer', 'total']
-
-class ConsumptionDelete(DeleteView):
-    model = Consumption
-    success_url = reverse_lazy('badala:index')
 
 class UserFormView(View):
     form_class = UserForm
@@ -54,7 +40,7 @@ class UserFormView(View):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect('badala:index')
+                    return redirect('badala:detail', pk=user.id)
 
         return render(request, self.template_name, {'form': form})
 

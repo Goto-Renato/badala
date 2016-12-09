@@ -1,18 +1,76 @@
-{% extends 'badala/base.html' %}
-{% block body %}
+{% extends 'badala/base.html'%}
+{% block title %} Register {% endblock%}
 
-    <ul>
-        {% for consumption in all_consumption %}
-        <li><a href="{% url 'badala:detail' consumption.id%}">{{ consumption.consumer }}</a></li>
-        <form action="{% url 'badala:consumption-delete' consumption.id%}" method="post" style="display: inline;">
-            {% csrf_token %}
-            <input type="hidden" name="consumption_id" value="{{consumption.id}}"/>
-            <button type="submit" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-trash"></span>
-            </button>
 
-        </form>
-        {% endfor %}
-    </ul>
+{% block body%}
 
-{% endblock %}
+<div class="view hm-black-strong">
+        <div class="full-bg-img flex-center">
+            <form class="form-inline pull-center">
+
+                <ul>
+                    <li>
+                        <h1 class="h1-responsive wow fadeInDown" data-wow-delay="0.2s">BADA.LA</h1></li>
+                </ul>
+
+                <!--First row-->
+                <div class="row">
+                    <!--First column-->
+                    <div class="col-md-6">
+                         <div class="md-form">
+                            <i class="fa fa-envelope prefix wow fadeInLeft"></i>
+                            <input type="email" id="form81" class="form-control validate wow fadeInLeft" style="color: white;">
+                            <label for="form81" data-error="wrong" data-success="right" class="wow fadeInLeft">email</label>
+                        </div>
+                    </div>
+
+                    <!--Second column-->
+                    <div class="col-md-6">
+                         <div class="md-form">
+                            <i class="fa fa-lock prefix wow fadeInRight"></i>
+                            <input type="password" id="form82" class="form-control validate wow fadeInRight" style="color: white;">
+                            <label for="form82" data-error="wrong" data-success="right" class="wow fadeInRight">senha</label>
+                        </div>
+                    </div>
+                </div>
+                <!--/.First row-->
+
+                <!--Third row-->
+                <div class="row">
+
+                    <!--First column-->
+                    <div class="col-md-4">
+                        <div class="md-form">
+                            <input type="text" id="form41" class="form-control validate wow fadeInUp" style="color: white;">
+                            <label for="form41" data-error="wrong" data-success="right"  class="form-control validate wow fadeInUp">Nome</label>
+                        </div>
+                    </div>
+
+                    <!--Second column-->
+                    <div class="col-md-4">
+                        <div class="md-form">
+                            <input type="text" id="form51" class="form-control validate wow fadeInUp" style="color: white;">
+                            <label for="form51" data-error="wrong" data-success="right"  class="form-control validate wow fadeInUp">CPF</label>
+                        </div>
+                    </div>
+
+                    <!--Third column-->
+                    <div class="col-md-4">
+                        <div class="md-form">
+                            <input type="text" id="form61" class="form-control validate wow fadeInUp" style="color: white;">
+                            <label for="form61" data-error="wrong" data-success="right" class="form-control validate wow fadeInUp">Nº cartao credito</label>
+                        </div>
+                    </div>
+
+                </div>
+                <!--/.Third row-->
+
+                <div class="row">
+                    <div class="md-form form-group col-md-12" style="text-align: center;">
+                        <a href="" class="btn btn-outline-primary waves-effect wow fadeInUp" style="width: 190px;">registrar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock%}

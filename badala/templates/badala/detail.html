@@ -1,14 +1,23 @@
 {% extends 'badala/base.html' %}
 {% block title %} Details {% endblock %}
 {% block body %}
-    <img src="{{ consumption.consumption_logo}}">
-    <h1>{{consumption.consumer}}</h1>
+    <h1>{{user.username}}</h1>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Descrição</th>
+          <th>Preço R$</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for product in user.product_set.all%}
+        <tr>
+          <td>{{product.description}}</td>
+          <td>{{product.price}}</td>
+        </tr>
+      {%endfor%}
+      </tbody>
+    </table>
 
-    {% for product in consumption.product_set.all%}
-    {{product.description}}
-    {{product.price}}
-    {% total += product.price%}
-    {%endfor%}
 
-<h1>{{total}}</h1>
 {% endblock %}
